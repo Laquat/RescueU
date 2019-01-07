@@ -11,13 +11,16 @@ public class hauptmenueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hauptmenue);
+
+
+
     }
 
 
     public void settingsBtn(View view){
 
 
-        Intent intent = new Intent(this,SettingsActivity.class);
+        Intent intent = new Intent(this,settingsActivity.class);
         startActivity(intent);
 
     }
@@ -32,6 +35,11 @@ public class hauptmenueActivity extends AppCompatActivity {
         Intent intent = new Intent (this, notfallActicity.class);
         startActivity(intent);
 
+    }
+
+    public void unsicherBtn (View view){
+        Intent intent = new Intent(this, unsicherActivity.class);
+        startActivity(intent);
     }
 
 }
