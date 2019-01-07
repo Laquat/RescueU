@@ -29,6 +29,9 @@ public class notfallActicity extends AppCompatActivity {
     String message;
     String gps;
 
+    private Criteria criteria;
+    private String bestProvider;
+
     private String provider;
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -75,9 +78,13 @@ public class notfallActicity extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(String s) {
-
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
             }
         };
+
+        criteria = new Criteria();
+        bestProvider = String.valueOf(locationManager.getBestProvider(criteria, true)).toString();
 
         //Permission für GPS Überprüfen
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -89,8 +96,9 @@ public class notfallActicity extends AppCompatActivity {
 
             //Letzte GPS Position bestimmen
             Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            gps = "Latitude:" + lastKnownLocation.getLatitude() + "\n Longitude:" + lastKnownLocation.getLongitude();
+            if(lastKnownLocation != null){
+                gps = "Latitude:" + lastKnownLocation.getLatitude() + "\n Longitude:" + lastKnownLocation.getLongitude();
+            }
 
         }
 
@@ -105,16 +113,26 @@ public class notfallActicity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Polizei , "+gps,
                         Toast.LENGTH_SHORT).show();
                 Log.d("Button","police");
+
+                Intent polizei = new Intent(this, PolizeiAuswahl.class);
+                startActivity(polizei);
+
                 break;
             case R.id.arzt:
                 Toast.makeText(getApplicationContext(), "Arzt , "+gps,
                         Toast.LENGTH_SHORT).show();
                 Log.d("Button","arzt");
+
+                Intent krankenwagen = new Intent(this, KrankenwagenAuswahl.class);
+                startActivity(krankenwagen);
                 break;
             case R.id.feuerwehr:
                 Toast.makeText(getApplicationContext(), "Feuerwehr , "+gps,
                         Toast.LENGTH_SHORT).show();
                 Log.d("Button","feuerwehr");
+
+                Intent feuerwehr = new Intent(this, FeuerwehrAuswahl.class);
+                startActivity(feuerwehr);
                 break;
         }
 
@@ -132,8 +150,6 @@ public class notfallActicity extends AppCompatActivity {
     //Send SMS
     public  void sendmassage(View view) {
 
-
-
         message = "This is a automatic Msg from RescueU your friend " + name + " needs your assistents. The Coordinates are " + gps;
 
 
@@ -149,19 +165,6 @@ public class notfallActicity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
-        /*
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.SEND_SMS)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS},
-                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
-        }*/
 
     }
 

@@ -29,6 +29,9 @@ public class unsicherActivity extends AppCompatActivity {
 
         swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
 
+
+
+
             //Swipe Button wird Betätigt
             @Override
             public void onStateChange(boolean active) {
