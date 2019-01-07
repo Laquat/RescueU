@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class notfallActicity extends AppCompatActivity {
@@ -28,6 +27,7 @@ public class notfallActicity extends AppCompatActivity {
     String name;
     String message;
     String gps;
+    String vor_name;
 
     private Criteria criteria;
     private String bestProvider;
@@ -49,10 +49,16 @@ public class notfallActicity extends AppCompatActivity {
 
         //Speicher auf Setting Überprüfen
         if(sharedPreferences.contains("setting_phone")){
-            phoneNo = sharedPreferences.getString("setting_phone",null);
+            phoneNo = sharedPreferences.getString("setting_notKontakt",null);
         }
         if(sharedPreferences.contains("setting_name")){
             name = sharedPreferences.getString("setting_name",null);
+        }
+        if(sharedPreferences.contains("setting_name")){
+            name = sharedPreferences.getString("setting_name",null);
+        }
+        if(sharedPreferences.contains("setting_vorname")){
+            vor_name = sharedPreferences.getString("setting_vorname",null);
         }
 
         //GPS Aktivieren
@@ -103,6 +109,9 @@ public class notfallActicity extends AppCompatActivity {
         }
 
 
+
+
+
     }
 
     //Button Call auswerten + Ausgabe der GPS Koordinaten
@@ -114,7 +123,7 @@ public class notfallActicity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Log.d("Button","police");
 
-                Intent polizei = new Intent(this, PolizeiAuswahl.class);
+                Intent polizei = new Intent(this, PolizeiAuswahlActivity.class);
                 startActivity(polizei);
 
                 break;
@@ -123,7 +132,7 @@ public class notfallActicity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Log.d("Button","arzt");
 
-                Intent krankenwagen = new Intent(this, KrankenwagenAuswahl.class);
+                Intent krankenwagen = new Intent(this, KrankenwagenAuswahlActivity.class);
                 startActivity(krankenwagen);
                 break;
             case R.id.feuerwehr:
@@ -131,7 +140,7 @@ public class notfallActicity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Log.d("Button","feuerwehr");
 
-                Intent feuerwehr = new Intent(this, FeuerwehrAuswahl.class);
+                Intent feuerwehr = new Intent(this, FeuerwehrAuswahlActivity.class);
                 startActivity(feuerwehr);
                 break;
         }
@@ -150,7 +159,15 @@ public class notfallActicity extends AppCompatActivity {
     //Send SMS
     public  void sendmassage(View view) {
 
-        message = "This is a automatic Msg from RescueU your friend " + name + " needs your assistents. The Coordinates are " + gps;
+        message = "Dies ist eine Automatischer Notruf, dein Freund " + vor_name + " " + name + " braucht unterstützung. Die Position ist " + gps;
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
+        }
+        else {
+
+        }
+
 
 
 
@@ -165,7 +182,6 @@ public class notfallActicity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
     }
 
 
@@ -196,5 +212,7 @@ public class notfallActicity extends AppCompatActivity {
 
 
     }
+
+
 
 }

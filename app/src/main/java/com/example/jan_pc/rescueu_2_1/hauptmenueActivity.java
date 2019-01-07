@@ -43,14 +43,6 @@ public class hauptmenueActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void settingsBtn(View view){
-
-
-        Intent intent = new Intent(this,settingsActivity.class);
-        startActivity(intent);
-
-    }
-
 
     public void notfallBtn (View view){
         Intent intent = new Intent (this, notfallActicity.class);

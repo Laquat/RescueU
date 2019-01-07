@@ -116,8 +116,26 @@ public class settingsActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "Bitte füllen Sie alle Felder aus. Sollten Sie kein Handycap besitzen oder Medikamente nehmen geben sie 'Keine' an.", Toast.LENGTH_LONG).show();
 
+            if(notKontakt.equals("")){
+                notKontakt_text.setHintTextColor(Color.RED);
+            }
             if(phone.equals("")){
-                vorname_text.setHintTextColor(Color.BLUE);
+                phone_text.setHintTextColor(Color.RED);
+            }
+            if(name.equals("")){
+                name_text.setHintTextColor(Color.RED);
+            }
+            if(vorname.equals("")){
+                vorname_text.setHintTextColor(Color.RED);
+            }
+            if(handycap.equals("")){
+                handycap_text.setHintTextColor(Color.RED);
+            }
+            if(medikamente.equals("")){
+                medikamente_text.setHintTextColor(Color.RED);
+            }
+            if(notfallPin.equals("")){
+                notfallPin_text.setHintTextColor(Color.RED);
             }
         }
     }

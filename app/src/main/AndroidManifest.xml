@@ -48,9 +48,11 @@
         <activity android:name=".notfallActicity" />
         <activity android:name=".settingsActivity" />
         <activity android:name=".unsicherActivity" />
-        <activity android:name=".PolizeiAuswahl" />
-        <activity android:name=".FeuerwehrAuswahl" />
-        <activity android:name=".KrankenwagenAuswahl"></activity>
+        <activity android:name=".PolizeiAuswahlActivity" />
+        <activity android:name=".FeuerwehrAuswahlActivity" />
+        <activity android:name=".KrankenwagenAuswahlActivity"></activity>
+
+
     </application>
 
 </manifest>

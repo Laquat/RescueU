@@ -96,4 +96,13 @@
     <string name="Notfallkontaktnummer">Notfallkontakt Nummer</string>
     <string name="NotfallkontaktName">Notfallkontakt Name</string>
     <string name="settingsTelephon">Telefonnummer</string>
+    <string name="Pin_Eingeben">Bitte Pin eingeben</string>
+    <string name="berfall">Überfall</string>
+    <string name="einbruch">Einbruch</string>
+    <string name="schl_gerei">Schlägerei</string>
+    <string name="notruf_senden">Notruf senden</string>
+    <string name="weitere_angaben">Weitere Angaben</string>
+    <string name="polizei_notruf_sms">Polizei Notruf SMS</string>
+    <string name="alarm_deaktivieren">Alarm Deaktivieren</string>
+    <string name="panikbutton">Panikbutton</string>
 </resources>

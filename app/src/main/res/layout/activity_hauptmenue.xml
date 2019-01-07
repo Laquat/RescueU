@@ -43,7 +43,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/round_button"
         android:onClick="unsicherBtn"
-        android:text="@string/unsicher"
+        android:text="@string/panikbutton"
         android:textColor="@color/colorTextIcons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
