@@ -101,7 +101,7 @@ public class KrankenwagenAuswahlActivity extends AppCompatActivity {
         });
 
     }
-
+    //Senden Wurde geklickt
     public void sendBtn(View view){
         buildmessage();
 
@@ -111,7 +111,7 @@ public class KrankenwagenAuswahlActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    //Message erstellen
     public void buildmessage(){
         message = "Dies ist ein Automatischer Notruf von " + vor_name + " " + nach_name + ". Ich benötige einen Krankenwagen, meine Position ist : " + gps + ".";
 
@@ -132,6 +132,7 @@ public class KrankenwagenAuswahlActivity extends AppCompatActivity {
 
     }
 
+    //Message Versenden
     public void sendsms(){
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
@@ -157,6 +158,7 @@ public class KrankenwagenAuswahlActivity extends AppCompatActivity {
         }
     }
 
+    //GPS daten abfragen
     public void getgps(){
 
 
@@ -210,6 +212,7 @@ public class KrankenwagenAuswahlActivity extends AppCompatActivity {
 
     }
 
+    //Benutzerinformationen laden
     public void save(){
         //Speicher auf Setting Überprüfen
         if(sharedPreferences.contains("setting_phone")){
@@ -232,6 +235,7 @@ public class KrankenwagenAuswahlActivity extends AppCompatActivity {
         }
     }
 
+    //Permission abfragen
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
         if(requestCode == MY_PERMISSIONS_REQUEST_SEND_SMS){

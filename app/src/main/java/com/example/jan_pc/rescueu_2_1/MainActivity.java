@@ -156,7 +156,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     protected void onStart() {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null){
-           updateUI(true);
+            googleauth = account.getId();
+            updateUI(true);
         }
         super.onStart();
     }

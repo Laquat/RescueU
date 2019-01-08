@@ -28,6 +28,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
 
     //zu Testzwecken eigene SMS
     private String phoneNo = "015778863007";
+    
     private String gps;
     private String message;
     private String nach_name;
@@ -103,6 +104,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
         });
     }
 
+    //Senden Wurde geklickt
     public void sendBtn(View view){
         buildmessage();
 
@@ -112,7 +114,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    //Message erstellen
     public void buildmessage(){
         message = "Dies ist ein Automatischer Notruf von " + vor_name + " " + nach_name + ". Ich benötige Hilfe von der Polizei, meine Position ist : " + gps + ". ";
 
@@ -133,6 +135,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
 
     }
 
+    //Message Versenden
     public void sendsms(){
 
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
@@ -158,6 +161,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
         }
     }
 
+    //GPS daten abfragen
     public void getgps(){
 
 
@@ -211,6 +215,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
 
     }
 
+    //Benutzerinformationen laden
     public void save(){
         //Speicher auf Setting Überprüfen
         if(sharedPreferences.contains("setting_phone")){
@@ -233,6 +238,7 @@ public class PolizeiAuswahlActivity extends AppCompatActivity {
         }
     }
 
+    //Permission abfragen
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
         if(requestCode == MY_PERMISSIONS_REQUEST_SEND_SMS){

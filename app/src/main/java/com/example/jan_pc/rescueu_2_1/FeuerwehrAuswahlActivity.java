@@ -27,6 +27,7 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
 
     //zu Testzwecken eigene SMS
     private String phoneNo = "015778863007";
+
     private String gps;
     private String message;
     private String nach_name;
@@ -102,16 +103,18 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
         });
     }
 
+    //Senden Wurde geklickt
     public void sendBtn(View view){
         buildmessage();
 
         sendsms();
 
+
         Intent intent = new Intent(this, hauptmenueActivity.class);
         startActivity(intent);
     }
 
-
+    //Message erstellen
     public void buildmessage(){
         message = "Dies ist ein Automatischer Notruf von " + vor_name + " " + nach_name + ". Ich benötige Hilfe von der Feuerwehr, meine Position ist : " + gps + ". ";
 
@@ -125,14 +128,17 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
             message += " An meiner Position hat ein Unfall stattgefunden. ";
         }
 
-        message += " Ich habe folgende Behinderungen: " + handycap + ". ";
+        message = "Ich habe folgende Behinderungen: " + handycap + ". ";
         message += " Ich nehme folgende Medikamente: " + medikamente + ". ";
         message += " Meine Telefonnummer ist: " + ownphone + ". ";
         message += "Weitere Informationen: " + customtext.getText().toString();
 
     }
 
+    //Message Versenden
     public void sendsms(){
+
+
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
@@ -147,6 +153,7 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, message, null, null);
+
             Toast.makeText(getApplicationContext(), "SMS Sent!",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
@@ -157,6 +164,7 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
         }
     }
 
+    //GPS daten abfragen
     public void getgps(){
 
 
@@ -210,6 +218,7 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
 
     }
 
+    //Benutzerinformationen laden
     public void save(){
         //Speicher auf Setting Überprüfen
         if(sharedPreferences.contains("setting_phone")){
@@ -232,6 +241,7 @@ public class FeuerwehrAuswahlActivity extends AppCompatActivity {
         }
     }
 
+    //Permission abfragen
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
         if(requestCode == MY_PERMISSIONS_REQUEST_SEND_SMS){
